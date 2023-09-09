@@ -3,10 +3,14 @@ import time
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
+
+# Serve static files from the "static" directory
+app.mount("/static/", StaticFiles(directory="static"), name="static")
 
 # Initialize variables to keep track of tap times and tap count
 first_tap_time = None
@@ -16,12 +20,11 @@ TIMEOUT = 3.0  # 3-second timeout
 
 @app.get("/", response_class=HTMLResponse)
 async def get_html(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-def read_root():
-    return {"message": "Hello, world!"}
+    global TIMEOUT
+    return templates.TemplateResponse("index.html", {"request": request, "TIMEOUT": TIMEOUT})
 
 @app.get("/tap/", response_class=HTMLResponse)
-def tap():
+async def tap():
     global first_tap_time, last_tap_time, tap_count
     
     # Capture the current time
@@ -40,9 +43,9 @@ def tap():
         tap_count = 1
         return '''
         <div id="result" class="mt-4">
-            <p><strong></strong> First Tap</p>
-            <p><strong>Number of Taps:</strong> 1</p>
-            <p><strong>Average BPM:</strong> - </p>
+            <p><strong>Average BPM:</strong> First Tap</p>
+            <p><strong>Nearest Whole:</strong> - </p>
+            <p><strong>Number of Taps:</strong> First Tap</p>
         </div>
         '''
 
@@ -57,18 +60,15 @@ def tap():
     
     return f'''
     <div id="result" class="mt-4">
-        <p><strong></strong> Tap registered</p>
+        <p><strong>Average BPM:</strong> {bpm:.2f}</p>
+        <p><strong>Nearest Whole:</strong> {round(bpm)}</p>
         <p><strong>Number of Taps:</strong> {tap_count}</p>
-        <p><strong>Average BPM:</strong> {bpm}</p>
     </div>
     '''
 
 @app.get("/tempo/")
-def calculate_tempo():
+async def calculate_tempo():
     global first_tap_time, last_tap_time, tap_count
-    
-    if tap_count < 2:
-        return {"message": "Keep tapping..."}
     
     # Calculate the time interval between the first and last tap
     time_interval = last_tap_time - first_tap_time
@@ -77,3 +77,8 @@ def calculate_tempo():
     tempo = (tap_count - 1) * 60 / time_interval
     
     return {"message": "Tempo calculated", "tempo": tempo}
+
+@app.get("/update_timeout/")
+async def update_timeout(timeout: int):
+    global TIMEOUT
+    TIMEOUT = timeout
