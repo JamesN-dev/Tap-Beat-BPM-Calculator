@@ -2,23 +2,20 @@
 
 ## Python - FastAPI - HTMX - TailewindCSS
 
-## Disclaimer ##
- This project is currently in active development and may not be suitable for production use. It is intended for testing, learning, and experimentation purposes.
-
 ## Overview
-This web app aims to provide a simple and interactive way to calculate Beats Per Minute (BPM) by tapping a button. FastAPI for the backend and TailwindCSS for styling. The project also leverages htmx for efficient partial page updates without requiring a complete page reload.
+This is a simple web app that calculates Beats Per Minute (BPM) by tapping a button or key.
 
 ## Features
-- Real-time BPM calculation(Average and Nearest Whole BPM)
-- Timeout for inactivity
-- Responsive design
+- Real-time BPM calculation(Average and Nearest Whole BPM).
+- Enter timeout - seconds until BPM calculations reset to zero.
+- Use any key to tap or click the tap button with your mouse.
 
-## Installation
+
+## Getting Started
 
 ### Prerequisites
 - Coded in Python 3.11.5 but may work in other versions.
-- Poetry - (https://python-poetry.org/docs/)
-- htmx - (https://htmx.org/)
+- Poetry (for package management)
 - Other required packages are listed in the `pyproject.toml` file.
 
 ### Setup
@@ -28,7 +25,10 @@ This web app aims to provide a simple and interactive way to calculate Beats Per
 4. Run the project: `poetry run uvicorn tap_tempo.main:app --reload`
 
 ## Usage
-Open your web browser and navigate to `http://127.0.0.1:8000/` to use the application.
+Open your web browser and navigate to your localhost to use the application.
+
+## Disclaimer ##
+ This project is currently in active development and may not be suitable for production use. It is intended for testing, learning, and experimentation purposes.
 
 ## License
 MIT License. See `LICENSE` for more information.
