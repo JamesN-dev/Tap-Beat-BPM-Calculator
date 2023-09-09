@@ -2,6 +2,9 @@
 
 ## Python - FastAPI - HTMX - TailewindCSS
 
+## Disclaimer ##
+ This project is currently in active development and may not be suitable for production use. It is intended for testing, learning, and experimentation purposes.
+
 ## Overview
 This web app aims to provide a simple and interactive way to calculate Beats Per Minute (BPM) by tapping a button. FastAPI for the backend and TailwindCSS for styling. The project also leverages htmx for efficient partial page updates without requiring a complete page reload.
 
