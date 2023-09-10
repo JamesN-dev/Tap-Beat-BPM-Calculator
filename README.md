@@ -11,7 +11,7 @@ This is a simple web app that calculates Beats Per Minute (BPM) by tapping a but
 - Use any key to tap or click the tap button with your mouse.
 
 
-## Getting Started
+## If you want to use this code for some reason:
 
 ### Prerequisites
 - Coded in Python 3.11.5 but may work in other versions.
