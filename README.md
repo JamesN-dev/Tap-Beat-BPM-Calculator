@@ -1,6 +1,6 @@
 # Tap Beat BPM Calculator
 
-## Python - FastAPI - HTMX - TailewindCSS
+## Python - FastAPI - HTMX - TailwindCSS
 
 ## Overview
 This is a simple web app that calculates Beats Per Minute (BPM) by tapping a button or key.
