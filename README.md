@@ -19,7 +19,7 @@ This is a simple web app that calculates Beats Per Minute (BPM) by tapping a but
 - Other required packages are listed in the `pyproject.toml` file.
 
 ### Setup
-1. Clone this repository: `git clone <THIS_REPOSITORY_URL>`
+1. Clone this repository.
 2. Navigate to the project folder: `cd Tap_tempo`
 3. Install dependencies: `poetry install`
 4. Run the project: `poetry run uvicorn tap_tempo.main:app --reload`
